@@ -1,5 +1,7 @@
 FROM debian:stretch
 
+EXPOSE 8080/tcp
+
 RUN echo "set debconf/frontend noninteractive" | DEBIAN_FRONTEND=noninteractive debconf-communicate &&\
     apt-get update &&\
     apt-get dist-upgrade -y &&\
@@ -14,9 +16,10 @@ RUN apt-get update &&\
     rm -rf /var/lib/apt/lists/* &&\
     echo "set debconf/frontend dialog" | DEBIAN_FRONTEND=noninteractive debconf-communicate
 
-ADD dist/vector.tgz /root/vector/
+RUN mkdir -pv /twisted-runtime && chown -v nobody:nogroup /twisted-runtime
+ADD --chown=nobody:nogroup dist/vector.tgz /root/vector/
 
-EXPOSE 8080/tcp
-
+USER nobody
 WORKDIR /tmp
-CMD twistd3 -n -l - web --path /root/vector --port tcp:8080
+
+CMD twistd3 -n -l - web --path /twisted-runtime --port tcp:8080

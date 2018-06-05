@@ -1,5 +1,10 @@
 FROM debian:stretch
 
+ARG REALUID="1000"
+ARG REALGID="1000"
+ARG REALUSR="builder"
+ARG REALGRP="builder"
+
 RUN echo "set debconf/frontend noninteractive" | DEBIAN_FRONTEND=noninteractive debconf-communicate &&\
     apt-get update &&\
     apt-get dist-upgrade -y &&\
@@ -18,10 +23,6 @@ RUN npm install -g bower gulp-cli
 
 RUN mkdir -pv /mnt/external
 
-ARG REALUID="1000"
-ARG REALGID="1000"
-ARG REALUSR="builder"
-ARG REALGRP="builder"
 RUN groupadd -g "$REALGID" "$REALGRP"
 RUN useradd -u "$REALUID" -g "$REALGRP" -m -N -s /bin/sh "$REALUSR"
 USER "$REALUSR"
