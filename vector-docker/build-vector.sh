@@ -1,9 +1,7 @@
 #!/bin/bash
 
-cd "$( cd "$(dirname "$0")" ; pwd -P )"
+CHECKOUT=${1:-"tags/v1.2.2"}
 
-if ! docker image inspect "draeath/vector-build:latest" > /dev/null 2>&1; then
-  ./build-buildenvironment.sh || exit
-fi
+cd "$( cd "$(dirname "$0")" ; pwd -P )" || exit
 
-docker run --rm -v "$(readlink -f ./dist):/mnt/external:rw" "draeath/vector-build:latest" 
+docker build -t "draeath/vector-host:latest" --build-arg CHECKOUT="${CHECKOUT}" .
