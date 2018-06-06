@@ -1,17 +1,13 @@
-FROM debian:stretch as base
+FROM debian:stretch as build
+ARG CHECKOUT
 RUN echo "set debconf/frontend noninteractive" | DEBIAN_FRONTEND=noninteractive debconf-communicate &&\
     apt-get update &&\
     apt-get dist-upgrade -y &&\
-    apt-get install -y apt-transport-https python-twisted &&\
-    rm -rf /var/lib/apt/lists/*
-
-FROM base as build
-ARG CHECKOUT
+    apt-get install -y apt-transport-https
 COPY apt-sources.list /etc/apt/sources.list
 COPY nodesource.gpg /etc/apt/trusted.gpg.d/nodesource.gpg
 RUN apt-get update &&\
-    apt-get install -y build-essential git nodejs tar gzip &&\
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y build-essential git nodejs tar gzip
 RUN npm install -g bower gulp-cli
 RUN useradd -m -s /bin/sh build
 USER build
