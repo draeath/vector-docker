@@ -17,7 +17,7 @@ RUN apt-get update &&\
     echo "set debconf/frontend dialog" | DEBIAN_FRONTEND=noninteractive debconf-communicate
 
 RUN mkdir -pv /twisted-runtime && chown -v nobody:nogroup /twisted-runtime
-ADD --chown=nobody:nogroup dist/vector.tgz /root/vector/
+ADD --chown=nobody:nogroup dist/vector.tgz /twisted-runtime/
 
 USER nobody
 WORKDIR /tmp
