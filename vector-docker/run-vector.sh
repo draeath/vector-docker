@@ -8,4 +8,4 @@ if ! docker image inspect "draeath/vector-host:latest" > /dev/null 2>&1; then
   ./build-vector.sh || exit
 fi
 
-docker run -it --name="vector" --rm -p ${VECTORPORT}:8080 draeath/vector-host:latest
+docker run -it --name="vector" --rm -p ${VECTORPORT}:80 draeath/vector-host:latest

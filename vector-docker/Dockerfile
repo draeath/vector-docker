@@ -23,9 +23,6 @@ RUN git checkout $CHECKOUT &&\
     bower install &&\
     gulp build
 
-FROM base as runtime
-EXPOSE 8080/tcp
-WORKDIR /tmp
-COPY --chown=root:root --from=build /home/build/vector/dist /vector
-USER nobody
-CMD twistd -n -l - web --path /vector --port tcp:8080
+FROM httpd:alpine as runtime
+EXPOSE 80/tcp
+COPY --chown=root:root --from=build /home/build/vector/dist /usr/local/apache2/htdocs
