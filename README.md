@@ -7,7 +7,7 @@ It defaults to port 8080, if you want something different all you have to do is 
 The script assigns the name "vector" to the docker container to prevent you from running more than one at the same time.
 
 - [run-vector.sh](vector-docker/run-vector.sh)
-  This runs vector via python-twisted.
+  This runs the container.
 - [build-vector.sh](vector-docker/build-vector.sh)
   This builds vector itself.
 - [Dockerfile](vector-docker/Dockerfile)
