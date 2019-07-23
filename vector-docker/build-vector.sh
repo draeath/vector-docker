@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHECKOUT=${1:-"tags/v1.2.2"}
+CHECKOUT=${1:-"tags/v1.3.2"}
 
 cd "$( cd "$(dirname "$0")" ; pwd -P )" || exit
 
