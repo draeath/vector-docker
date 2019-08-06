@@ -1,4 +1,4 @@
-This is a silly docker container to run Netflix' Vector.
+This is a silly docker/podman container to run Netflix' Vector.
 
 The scripts check that everything they need exists, so you don't have to run them one-by-one, just run `run-vector.sh` and it will run the builds if necessary.
 
@@ -11,6 +11,6 @@ The script assigns the name "vector" to the docker container to prevent you from
 - [build-vector.sh](vector-docker/build-vector.sh)
   This builds vector itself.
 - [Dockerfile](vector-docker/Dockerfile)
-  This is the Dockerfile for the whole thing. It uses a mutli-stage build, as is the new-hotness these days.
+  This is the Dockerfile for the whole thing. It uses a mutli-stage build, as is the fad these days.
 
-If you want a different version of vector, either edit the default in [build-vector.sh](vector-docker/build-vector.sh) or run that script manually with the git checkout term (eg "tags/v1.2.2") you want.
+If you want a different version of vector, either edit the default in [build-vector.sh](vector-docker/build-vector.sh) or run that script manually with the git checkout term (eg "tags/v1.3.2") you want.

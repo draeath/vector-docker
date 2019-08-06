@@ -1,0 +1,4 @@
+# workaround for https://github.com/nodesource/distributions/issues/875
+Package: *
+Pin: origin deb.nodesource.com
+Pin-Priority: 600
